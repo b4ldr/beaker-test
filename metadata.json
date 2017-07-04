@@ -1,0 +1,23 @@
+{
+  "name": "beaker-test",
+  "version": "0.1.0",
+  "author": "john.bond@icann.org",
+  "summary": "test module",
+  "license": "Apache-2.0",
+  "source": "https://github.com/b4ldr/beaker-test",
+  "project_page": "https://github.com/b4ldr/beaker-test",
+  "issues_url": "https://github.com/b4ldr/beaker-test/issues",
+  "tags": [ ],
+  "dependencies": [ ],
+  "operatingsystem_support": [
+    {
+      "operatingsystem" : "Ubuntu",
+      "operatingsystemrelease" : [ "14.04", "16.04" ]
+    },
+    {
+      "operatingsystem" : "FreeBSD",
+      "operatingsystemrelease" : [ "10" ]
+    }
+  ]
+}
+
