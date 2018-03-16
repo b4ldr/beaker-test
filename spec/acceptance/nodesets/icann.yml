@@ -6,7 +6,7 @@ HOSTS:
   ac10.xz-stp.l.dns.icann.org:
     platform: ubuntu-16.04-amd64
     box: puppetlabs/ubuntu-16.04-64-nocm
-    ip: 172.17.0.10
+    ip: 10.255.255.10
     hypervisor: vagrant
 CONFIG:
   trace_limit: 200
