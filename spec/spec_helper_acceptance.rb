@@ -9,10 +9,18 @@ AUTOSIGN_PASSWORD     = '2?h}8xtE}PyLXsY+=d2!'
 
 # Install Puppet on all hosts
 hosts.each do |host|
-  step "install packages on #{host}"
+  step "Update nameserver on #{host}"
   on(host, 'printf "nameserver 8.8.8.8" > /etc/resolv.conf')
-  step 'install puppet'
+  step "install puppet on #{host}"
   on(host, "/usr/bin/curl -k #{PUPPET_INSTALL_SCRIPT} | /bin/bash -s custom_attributes:challengePassword=#{AUTOSIGN_PASSWORD}") 
+  cert_source = File.join(Dir.pwd, '..', 'ca', "#{host}.pem")
+  key_source = File.join(Dir.pwd, '..', 'ca', "#{host}.key")
+  cert_dest = File.join(host.puppet['ssldir'], 'certs', "#{host}.pem")
+  key_dest = File.join(host.puppet['ssldir'], 'private_keys', "#{host}.pem")
+  step "copy public key #{host}"
+  scp_to(host, cert_source, cert_dest)
+  step "copy private key #{host}"
+  scp_to(host, key_source, key_dest)
 end
 RSpec.configure do |c|
   c.formatter = :documentation
