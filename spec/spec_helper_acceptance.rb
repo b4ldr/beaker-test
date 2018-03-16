@@ -9,8 +9,6 @@ puppet_install_script = 'https://iad01.master.dns.icann.org:8140/packages/curren
 # Install Puppet on all hosts
 hosts.each do |host|
   step "install packages on #{host}"
-  host.install_package('git')
-  # remove search list and domain from resolve.conf
   on(host, 'printf "nameserver 8.8.8.8" > /etc/resolv.conf')
   step 'install puppet'
   on(host, "/usr/bin/curl -k #{puppet_install_script} | /bin/bash") 
