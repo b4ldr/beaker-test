@@ -2,12 +2,11 @@
 
 require 'spec_helper_acceptance'
 
-describe 'knot class' do
+describe 'puppet install' do
   context 'defaults' do
+    let(:args) { '--no-daemonize -v -t -o -e 206_genral_erros' }
     it 'is_expected.to work with no errors' do
-      pp = 'notify {$::fqdn: }'
-      execute_manifest(pp, catch_failures: true)
-      expect(execute_manifest(pp, catch_failures: true).exit_code).to eq 0
+      run_agent_on(default, args)
     end
   end
 end
