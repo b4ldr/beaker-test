@@ -6,10 +6,10 @@ describe 'puppet install' do
   context 'defaults' do
     let(:args) { '--no-daemonize -t -o --environment 206_genral_erros' }
     it 'run puppet and make changes' do
-      expect(run_agent_on(default, args)).to eq 2
+      run_agent_on(default, args, acceptable_exit_codes: [2])
     end
-    it 'run puppet clean' do
-      expect(run_agent_on(default, args)).to eq 0
+    it 'run puppet second run to converge' do
+      run_agent_on(default, args, acceptable_exit_codes: [2])
     end
   end
 end
