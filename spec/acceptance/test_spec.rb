@@ -11,5 +11,8 @@ describe 'puppet install' do
     it 'run puppet second run to converge' do
       run_agent_on(default, args, acceptable_exit_codes: [2])
     end
+    it 'Clean puppet run' do
+      run_agent_on(default, args, acceptable_exit_codes: [2])
+    end
   end
 end
