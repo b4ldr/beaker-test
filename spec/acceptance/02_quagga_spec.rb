@@ -16,6 +16,14 @@ if default['roles'].include?('quagga')
       describe port(179) do
         it { is_expected.to be_listening }
       end
+      describe command("vtysh -c 'show ip bgp sum'") do
+        its(:stdout) { is_expected.to match(%r{10.255.0.1\s+4\s+40528}) }
+      end
+      default['prefix'].each do |prefix|
+        describe command("vtysh -c 'show ip bgp neighbors #{default.ip} advertised-routes'") do
+          its(:stdout) { is_expected.to match(%r{#{prefix}\s+#{default.ip}}) }
+        end
+      end
     end
   end
 end

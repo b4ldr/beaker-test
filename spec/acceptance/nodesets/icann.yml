@@ -10,6 +10,9 @@ HOSTS:
     box: puppetlabs/ubuntu-16.04-64-nocm
     hypervisor: vagrant
     ip: 10.255.0.10
+    prefix:
+    - 199.7.82.0/23
+    - 199.7.83.0
 CONFIG:
   trace_limit: 200
   masterless: true
