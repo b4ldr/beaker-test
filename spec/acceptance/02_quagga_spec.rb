@@ -21,7 +21,7 @@ if default['roles'].include?('quagga')
       end
       default['prefix'].each do |prefix|
         describe command("vtysh -c 'show ip bgp neighbors 10.255.0.1 advertised-routes'") do
-          its(:stdout) { is_expected.to match(%r{#{prefix}\s+#{default.ip}}) }
+          its(:stdout) { is_expected.to match(%r{#{prefix}\s+#{default['ip']}}) }
         end
       end
     end
