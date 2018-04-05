@@ -5,8 +5,7 @@
 HOSTS:
   ac10.xz-stp.l.dns.icann.org:
     roles:
-    - routing
-    - linux
+    - quagga
     platform: ubuntu-16.04-amd64
     box: puppetlabs/ubuntu-16.04-64-nocm
     hypervisor: vagrant
