@@ -4,7 +4,7 @@ require 'spec_helper_acceptance'
 
 describe 'puppet install' do
   context 'defaults' do
-    let(:args) { '--no-daemonize -t -o --environment 206_genral_erros' }
+    let(:args) { "--no-daemonize -t -o --environment #{PUPPET_ENV}" }
     it 'run puppet and make changes' do
       run_agent_on(default, args, acceptable_exit_codes: [2])
     end
