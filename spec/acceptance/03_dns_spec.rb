@@ -9,6 +9,9 @@ if default['roles'].include?('dns')
       describe command('aa-disable /usr/sbin/named') do
         its(:exit_status) { is_expected.to eq 0 }
       end
+      describe command('rndc reload') do
+        its(:exit_status) { is_expected.to eq 0 }
+      end
     end
     default['dns'].each_pair do |zone_set, config|
       context "check #{zone_set} Zone Set @#{config['address']}" do
