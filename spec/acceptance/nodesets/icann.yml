@@ -4,8 +4,10 @@
 # https://github.com/voxpupuli/modulesync_config
 HOSTS:
   ac10.xz-stp.l.dns.icann.org:
+    synced_folder: disabled
     roles:
     - quagga
+    - dns
     platform: ubuntu-16.04-amd64
     box: puppetlabs/ubuntu-16.04-64-nocm
     hypervisor: vagrant
@@ -13,6 +15,19 @@ HOSTS:
     prefix:
     - 199.7.82.0/23
     - 199.7.83.0
+    dns:
+      root:
+        service: nsd
+        address: 199.7.83.42
+        zones:
+        - .
+        - root-servers.net.
+        - arpa.
+      root:
+        service: bind9
+        address: 199.7.83.53
+        zones:
+        - identity.l.root-servers.org
 CONFIG:
   trace_limit: 200
   masterless: true
