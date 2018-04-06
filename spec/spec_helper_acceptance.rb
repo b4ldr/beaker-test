@@ -8,10 +8,6 @@ PUPPET_INSTALL_SCRIPT = 'https://iad01.master.dns.icann.org:8140/packages/curren
 SCRIPT_DIR = File.expand_path(File.dirname(__FILE__))
 # Install Puppet on all hosts
 hosts.each do |host|
-  step "#{host}: Install apparmor-utils on"
-  host.install_package('apparmor-utils')
-  step "#{host}: disable App armor for named"
-  on(host, 'aa-disable /usr/sbin/named')
   step "#{host}: Update nameserver on"
   on(host, 'printf "nameserver 8.8.8.8" > /etc/resolv.conf')
   step "#{host}: install puppet on"
@@ -26,6 +22,8 @@ hosts.each do |host|
   scp_to(host, cert_source, cert_dest)
   step "#{host}: copy private key"
   scp_to(host, key_source, key_dest)
+  step "#{host}: Install apparmor-utils on"
+  host.install_package('apparmor-utils')
 end
 RSpec.configure do |c|
   c.formatter = :documentation
