@@ -8,6 +8,7 @@ HOSTS:
     roles:
     - quagga
     - dns
+    - http
     platform: ubuntu-16.04-amd64
     box: puppetlabs/ubuntu-16.04-64-nocm
     hypervisor: vagrant
@@ -15,6 +16,15 @@ HOSTS:
     prefix:
     - 199.7.82.0/23
     - 199.7.83.0
+    http:
+      http.l.root-servers.org:
+        http: true
+        https: true
+        service: nginx
+        uris:
+        - root.txt
+        - arpa.txt
+        - root-servers.net.txt
     dns:
       root:
         service: nsd
