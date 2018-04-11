@@ -6,7 +6,7 @@ if default['roles'].include?('http')
   curl_cmd = 'curl -I --include -o -'
   describe 'Testing HTTP configueration' do
     default['http'].each_pair do |domain, config|
-      context "check #{zone_set} Zone Set @#{config['address']}" do
+      context "check #{domain}" do
         describe service(config['service']) do
           it { is_expected.to be_running }
         end
