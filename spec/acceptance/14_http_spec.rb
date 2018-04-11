@@ -3,7 +3,7 @@
 if default['roles'].include?('http')
 
   require 'spec_helper_acceptance'
-  curl_cmd = 'curl -I --include -o -'
+  curl_cmd = 'curl -I --include --insecure -o -'
   describe 'Testing HTTP configueration' do
     default['http'].each_pair do |domain, config|
       context "check #{domain}" do
