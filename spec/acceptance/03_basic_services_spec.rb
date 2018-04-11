@@ -3,7 +3,7 @@
 require 'spec_helper_acceptance'
 
 describe 'Basic services' do
-  content 'SSHd' do
+  context 'SSHd' do
     describe port(22) do
       it { is_expected.to be_listening }
     end
@@ -11,7 +11,7 @@ describe 'Basic services' do
       its(:user) { is_expected.to eq 'root' }
     end
   end
-  content 'NRPE' do
+  context 'NRPE' do
     describe port(5666) do
       it { is_expected.to be_listening }
     end
@@ -19,12 +19,12 @@ describe 'Basic services' do
       its(:user) { is_expected.to eq 'nagios' }
     end
   end
-  content 'NTPd' do
+  context 'NTPd' do
     describe process('ntpd') do
       its(:user) { is_expected.to match(/_?ntp/) }
     end
   end
-  content 'Zabbix Agent' do
+  context 'Zabbix Agent' do
     describe port(10050) do
       it { is_expected.to be_listening }
     end
