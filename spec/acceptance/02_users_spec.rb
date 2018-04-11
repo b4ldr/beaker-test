@@ -19,8 +19,8 @@ describe 'test users have been created correctly' do
     context "Test script user #{script_user}" do
       describe user(script_user) do
         it { is_expected.to exist }
-        it { is_expected.to belong_to_group 'sudo' }
-        it { is_expected.to have_home_directory "/home/#{real_user}" }
+        it { is_expected.not_to belong_to_group 'sudo' }
+        it { is_expected.to have_home_directory "/home/#{script_user}" }
         its(:encrypted_password) { is_expected.to eq '!' }
       end
     end
